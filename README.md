@@ -24,14 +24,17 @@ src/
   seg/              segmentation training, prediction, evaluation, comparison
 
 data/
-  drone.yaml        YOLO drone part segmentation config
+  drone.yaml                  local full dataset config example
+  sample_part_seg/            small public sample for drone part segmentation
+  sample_defect_detseg/       small public sample for defect segmentation
 
 runs/
   report_figures_20260603/   report-ready figures, generated locally
 ```
 
 Large datasets, trained weights, and experiment outputs are intentionally excluded
-from GitHub by `.gitignore`.
+from GitHub by `.gitignore`. Small sample datasets are included under `data/` so
+the repository structure and scripts can be tested after cloning.
 
 ## Research Scope
 
@@ -64,31 +67,36 @@ for that machine before installing the remaining packages.
 
 ## Segmentation Training
 
-Part segmentation example:
+Part segmentation sample:
 
 ```bash
 python src/seg/train.py \
   --model yolo11n-seg.pt \
-  --data data/drone.yaml \
-  --epochs 30 \
+  --data data/sample_part_seg/data.yaml \
+  --epochs 5 \
   --imgsz 640 \
   --batch 8 \
-  --run-name drone_seg_v1 \
+  --run-name sample_part_seg_yolo \
   --project runs/segment
 ```
 
-Defect segmentation example:
+For your full dataset, replace `data/sample_part_seg/data.yaml` with your own
+dataset config, for example `data/drone.yaml`.
+
+Defect segmentation sample:
 
 ```bash
 python src/seg/train.py \
   --model yolo11n-seg.pt \
-  --data data/defect_detseg_v2/data.yaml \
-  --epochs 30 \
+  --data data/sample_defect_detseg/data.yaml \
+  --epochs 5 \
   --imgsz 640 \
   --batch 8 \
-  --run-name defectseg_yolo_v2_e30 \
+  --run-name sample_defectseg_yolo \
   --project runs/segment
 ```
+
+Use more epochs, for example `30` or `50`, only for real experiments.
 
 ## Evaluation And Comparison
 
@@ -96,9 +104,9 @@ YOLO defect segmentation evaluation:
 
 ```bash
 python src/seg/eval_yolo_defectseg.py \
-  --weights runs/segment/defectseg_yolo_v2_e30/weights/best.pt \
-  --data data/defect_detseg_v2/data.yaml \
-  --out-dir runs/seg/yolo_defect_v2_e30_eval \
+  --weights runs/segment/sample_defectseg_yolo/weights/best.pt \
+  --data data/sample_defect_detseg/data.yaml \
+  --out-dir runs/seg/sample_yolo_defect_eval \
   --conf 0.10
 ```
 
@@ -106,9 +114,9 @@ YOLO-seg vs Mask R-CNN comparison:
 
 ```bash
 python src/seg/compare_defectseg_models.py \
-  --yolo-summary runs/seg/yolo_defect_v2_e30_eval/evaluation_summary.json \
-  --maskrcnn-summary runs/seg/maskrcnn_defect_v2_e30/evaluation_summary.json \
-  --out-dir runs/seg/compare_yolo_e30_vs_mask_e30
+  --yolo-summary runs/seg/sample_yolo_defect_eval/evaluation_summary.json \
+  --maskrcnn-summary runs/seg/sample_maskrcnn_defect_eval/evaluation_summary.json \
+  --out-dir runs/seg/sample_compare_yolo_maskrcnn
 ```
 
 ## Report Figures

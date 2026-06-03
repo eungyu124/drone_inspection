@@ -1,0 +1,5 @@
+path: data/sample_defect_detseg
+train: images/train
+val: images/val
+names:
+  0: defect

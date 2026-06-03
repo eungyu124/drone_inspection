@@ -44,6 +44,12 @@ data/validation_scenarios_v1/
 data/*_split/
 data/*_pool/
 
+# Keep small public sample datasets.
+!data/sample_part_seg/
+!data/sample_part_seg/**
+!data/sample_defect_detseg/
+!data/sample_defect_detseg/**
+
 # Runtime/cache files
 *.cache
 *.log

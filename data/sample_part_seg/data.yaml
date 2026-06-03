@@ -1,0 +1,8 @@
+path: data/sample_part_seg
+train: images/train
+val: images/val
+nc: 3
+names:
+  0: propeller
+  1: body
+  2: arm
