@@ -1,0 +1,53 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local environments
+.venv/
+.venv*/
+venv/
+env/
+
+# macOS / editor
+.DS_Store
+.vscode/
+.idea/
+.mplconfig/
+
+# Large model weights and exported artifacts
+*.pt
+*.pth
+*.onnx
+*.engine
+*.torchscript
+*.tflite
+*.mlpackage/
+*.mlmodel
+
+# Experiment outputs
+runs/
+wandb/
+mlruns/
+
+# Datasets and generated data
+data/images/
+data/labels/
+data/roi/
+data/roi*/
+data/mvtec_ad/
+data/defect_detseg*/
+data/validation_scenarios_v1/
+data/*_split/
+data/*_pool/
+
+# Runtime/cache files
+*.cache
+*.log
+*.tmp
+
+# Keep lightweight dataset config files if explicitly added.
+!data/*.yaml
