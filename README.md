@@ -46,7 +46,7 @@ input drone image -> part segmentation -> ROI crop -> defect decision -> visuali
 
 The study compares model choices under four data scenarios:
 
-- Few-shot defects: ProtoNet
+- Few-shot defects: ProtoNet, MVTecAD-ResNet
 - Normal-only data: PatchCore and PaDiM
 - Defect classification with transfer learning: MVTec AD pretraining + drone ROI fine-tuning
 - Fully labeled defect location data: YOLO-seg and Mask R-CNN with BBox/Mask labels
